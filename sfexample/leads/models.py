@@ -17,7 +17,7 @@ class Lead(models.SalesforceModel):
     state = models.CharField(max_length=80, verbose_name='State/Province', blank=True)
     postal_code = models.CharField(max_length=20, verbose_name='Zip/Postal Code', blank=True)
     created_date = models.DateTimeField(sf_read_only=models.READ_ONLY)
-    #is_a_test = models.BooleanField()
+    is_test_lead = models.BooleanField(custom=True, db_column='is_test_lead__c', verbose_name='is_test_lead', default=models.DEFAULTED_ON_CREATE)
 
     class Meta(models.Model.Meta):
         db_table = 'Lead'

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>django-salesforce example</title>
+</head>
+<body>
+
+    <table>
+        <thead>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Company</th>
+            <th>Phone</th>
+            <th>Mobile</th>
+            <th>Email</th>
+        </thead>
+        <tbody>
+            {% for lead in leads %}
+                <tr>
+                    <td>{{ lead.first_name }}</td>
+                    <td>{{ lead.last_name }}</td>
+                    <td>{{ lead.company }}</td>
+                    <td>{{ lead.phone }}</td>
+                    <td>{{ lead.mobile_phone }}</td>
+                    <td>{{ lead.email }}</td>
+                    <td><a href="{% url 'leads:lead_detail' lead.id %}">View</a></td>
+                    <td><a href="{% url 'leads:edit_lead' lead.id %}">Edit</a></td>
+                    <td><a href="{% url 'leads:delete_lead' lead.id %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<a href="{% url 'leads:create_lead' %}">Create New Lead</a>
+
+</body>
+</html>
