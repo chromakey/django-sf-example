@@ -5,10 +5,10 @@
     <title>Create Lead</title>
 </head>
 <body>
-    <form method="POST" action="{% url 'leads:create_lead' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+<form method="POST" action="{% url 'leads:create_lead' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>

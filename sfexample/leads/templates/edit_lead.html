@@ -5,10 +5,10 @@
     <title>Lead - {{ lead.first_name }} {{ lead.last_name }}</title>
 </head>
 <body>
-    <form method="POST" action="{% url 'leads:edit_lead' lead.id %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+<form method="POST" action="{% url 'leads:edit_lead' lead.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>

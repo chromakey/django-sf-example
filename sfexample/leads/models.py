@@ -8,16 +8,19 @@ class Lead(models.SalesforceModel):
     company = models.CharField(max_length=255)
     phone = models.CharField(max_length=40, blank=True)
     mobile_phone = models.CharField(max_length=40, blank=True)
-    other_phone = models.CharField(custom=True, db_column='Other_Phone__c', max_length=40, verbose_name='Other Phone', blank=True)
+    other_phone = models.CharField(custom=True, db_column='Other_Phone__c', max_length=40, verbose_name='Other Phone',
+                                   blank=True)
     email = models.EmailField(blank=True, null=True)
-    alternate_email = models.EmailField(custom=True, db_column='Alternate_email__c', verbose_name='Alternate email', blank=True, null=True)
+    alternate_email = models.EmailField(custom=True, db_column='Alternate_email__c', verbose_name='Alternate email',
+                                        blank=True, null=True)
     country = models.CharField(max_length=80, blank=True)
     street = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=40, blank=True)
     state = models.CharField(max_length=80, verbose_name='State/Province', blank=True)
     postal_code = models.CharField(max_length=20, verbose_name='Zip/Postal Code', blank=True)
     created_date = models.DateTimeField(sf_read_only=models.READ_ONLY)
-    is_test_lead = models.BooleanField(custom=True, db_column='is_test_lead__c', verbose_name='is_test_lead', default=models.DEFAULTED_ON_CREATE)
+    is_test_lead = models.BooleanField(custom=True, db_column='is_test_lead__c', verbose_name='is_test_lead',
+                                       default=models.DEFAULTED_ON_CREATE)
 
     class Meta(models.Model.Meta):
         db_table = 'Lead'

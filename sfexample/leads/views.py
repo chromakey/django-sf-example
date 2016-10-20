@@ -1,9 +1,8 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponseForbidden
-from django.core.urlresolvers import reverse
+from django.core.exceptions import SuspiciousOperation
+from django.shortcuts import redirect, render, get_object_or_404
 
-from leads.models import Lead
-from leads.forms import LeadForm
+from .forms import LeadForm
+from .models import Lead
 
 
 def index(request):
@@ -11,13 +10,14 @@ def index(request):
 
     return render(request, 'index.html', {'leads': leads})
 
+
 def lead_detail(request, lead_id):
     lead_obj = get_object_or_404(Lead, id=lead_id)
 
     return render(request, 'lead_detail.html', {'lead': lead_obj})
 
-def edit_lead(request, lead_id):
 
+def edit_lead(request, lead_id):
     if request.method == 'GET':
         lead_obj = get_object_or_404(Lead, id=lead_id)
         form = LeadForm(instance=lead_obj)
@@ -31,13 +31,13 @@ def edit_lead(request, lead_id):
         if form.is_valid():
             form.save()
 
-        return HttpResponseRedirect(reverse('leads:lead_detail', kwargs={'lead_id': lead_id}))
+        return redirect('leads:lead_detail', lead_id=lead_id)
 
     else:
-        return HttpResponseForbidden
+        raise SuspiciousOperation
+
 
 def create_lead(request):
-
     if request.method == 'GET':
         form = LeadForm()
 
@@ -51,16 +51,18 @@ def create_lead(request):
             instance.is_test_lead = True
             instance.save()
 
-            return HttpResponseRedirect(reverse('leads:lead_detail', kwargs={'lead_id': instance.id}))
+            return redirect('leads:lead_detail', lead_id=instance.id)
 
         else:
             return render(request, 'create_lead.html', {'form': form})
 
     else:
-        return HttpResponseForbidden
+        raise SuspiciousOperation
+
 
 def delete_lead(request, lead_id):
-    lead_obj = get_object_or_404(Lead, id=lead_id)
-    lead_obj.delete()
+    if request.method == 'POST':
+        lead_obj = get_object_or_404(Lead, id=lead_id)
+        lead_obj.delete()
 
-    return HttpResponseRedirect(reverse('leads:index'))
+    return redirect('leads:index')

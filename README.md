@@ -1,2 +1,2 @@
 # django-sf-example
-Example from my 9-21-15 presentation on django-salesforce
+Example from my October 20, 2016 presentation on django-salesforce at Plone Conf 2016.

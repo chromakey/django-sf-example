@@ -1,6 +1,5 @@
-Django==1.7.10
-django-salesforce==0.6.1
-pytz==2015.4
-requests==2.7.0
-simplejson==3.8.0
-wheel==0.24.0
+Django==1.10.2
+django-salesforce==0.6.9
+pytz==2016.7
+requests==2.11.1
+simplejson==3.8.2
