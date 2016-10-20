@@ -19,7 +19,7 @@ class Lead(models.SalesforceModel):
     state = models.CharField(max_length=80, verbose_name='State/Province', blank=True)
     postal_code = models.CharField(max_length=20, verbose_name='Zip/Postal Code', blank=True)
     created_date = models.DateTimeField(sf_read_only=models.READ_ONLY)
-    
+
 
     class Meta(models.Model.Meta):
         db_table = 'Lead'
