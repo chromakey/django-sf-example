@@ -22,8 +22,6 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -72,7 +70,7 @@ DATABASES = {
         'CONSUMER_SECRET': os.environ['SF_SECRET'],
         'USER': os.environ['SF_USER'],
         'PASSWORD': os.environ['SF_PASS'],
-        'HOST': 'https://cs18.salesforce.com',
+        'HOST': 'https://test.salesforce.com',
     },
 }
 
