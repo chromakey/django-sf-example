@@ -6,7 +6,7 @@ from .models import Lead
 
 
 def index(request):
-    leads = Lead.objects.filter(is_test_lead=True)
+    leads = Lead.objects.filter()
 
     return render(request, 'index.html', {'leads': leads})
 
@@ -48,7 +48,6 @@ def create_lead(request):
 
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.is_test_lead = True
             instance.save()
 
             return redirect('leads:lead_detail', lead_id=instance.id)
